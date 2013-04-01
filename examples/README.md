@@ -1,4 +1,4 @@
-How to play with these exapmles
+How to play with these examples
 ===============================
 
 These examples are intended for starter kit and learning purpose and SHOULD NOT be used
