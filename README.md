@@ -1,5 +1,4 @@
-WP_Twitter_Client &mdash; Library to help WordPress developer working with Twitter platform,
-especially Twitter API.
+WP_Twitter_Client &mdash; Library to help WordPress developer working with Twitter REST API.
 
 ## Features
 
@@ -15,10 +14,6 @@ See [README.md in examples directory](https://github.com/gedex/WP_Twitter_Client
 ## Running Test
 
 **WIP** and will be in `test` directory.
-
-## Credits
-
-[tmhOuath](https://github.com/themattharris/tmhOAuth) where this library derived from.
 
 ## License
 

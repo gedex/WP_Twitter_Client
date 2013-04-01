@@ -1,6 +1,6 @@
 <?php
 /**
- * WP_Twitter_Client - Library to help WordPress developer working with Twitter platform, especially Twitter API.
+ * WP_Twitter_Client - Library to help WordPress developer working with Twitter REST API.
  * Copyright (C) 2013  Akeda Bagus <admin@gedex.web.id>
  *
  * This program is free software: you can redistribute it and/or modify
