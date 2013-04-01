@@ -3,13 +3,14 @@ especially Twitter API.
 
 ## Features
 
-* Small and readable code (just one file, three hundred lines including comments).
+* Small and readable code (just one main file, three hundred lines including comments).
 * Use WordPress HTTP request API.
 * Filters available to manipulate OAuth parameters.
+* Include examples for starting guide.
 
 ## Examples
 
-**WIP** and will be in `examples` directory.
+See [README.md in examples directory](https://github.com/gedex/WP_Twitter_Client/blob/master/examples/README.md).
 
 ## Running Test
 
