@@ -6,14 +6,18 @@ for production site.
 
 1. I encourage you to create a child theme from your active theme. Lets name it
    `twentytwelve_child`.
+
 2. Go to `twentytwelve_child` directory and clone `WP_Twitter_Client` repo.
-	 ~~~
-	 $ git clone https://github.com/gedex/WP_Twitter_Client.git
-	 ~~~
+
+	~~~text
+	$ git clone https://github.com/gedex/WP_Twitter_Client.git
+	~~~
+
 3. Include one of the example in `twentytwelve_child`'s `functions.php`.
-   ~~~php
-	 require_once( STYLESHEETPATH . '/WP_Twitter_Client/examples/widget_home_timeline.php' );
-   ~~~
+
+	~~~php
+	require_once( STYLESHEETPATH . '/WP_Twitter_Client/examples/widget_home_timeline.php' );
+	~~~
 
 It's best to start from `/WP_Twitter_Client/examples/authorization.php` as it contains
 the basic OAuth flow used to obtain the access token.
