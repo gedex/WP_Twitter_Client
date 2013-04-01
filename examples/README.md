@@ -9,15 +9,25 @@ for production site.
 
 2. Go to `twentytwelve_child` directory and clone `WP_Twitter_Client` repo.
 
-	~~~text
-	$ git clone https://github.com/gedex/WP_Twitter_Client.git
-	~~~
+  ~~~text
+  $ git clone https://github.com/gedex/WP_Twitter_Client.git
+  ~~~
 
 3. Include one of the example in `twentytwelve_child`'s `functions.php`.
 
-	~~~php
-	require_once( STYLESHEETPATH . '/WP_Twitter_Client/examples/widget_home_timeline.php' );
-	~~~
+  ~~~php
+  require_once( STYLESHEETPATH . '/WP_Twitter_Client/examples/widget_home_timeline.php' );
+  ~~~
+
+4. Go to https://dev.twitter.com/apps, create an app and note the `consumer_key` and
+   `consumer_secret`. Open the example you're going to use and find following lines:
+
+   ~~~php
+   define( 'CONSUMER_KEY',    'DL9ziNzAbLmShjW8sSYxw' );
+   define( 'CONSUMER_SECRET', 'l5NCQTBHv4VNVAIx0rb6R1oRoh21XPuqiy0kAfw8xnQ' );
+   ~~~~
+
+   Replaces it with your own `consumer_key` and `consumer_secret`.
 
 It's best to start from `/WP_Twitter_Client/examples/authorization.php` as it contains
 the basic OAuth flow used to obtain the access token.
