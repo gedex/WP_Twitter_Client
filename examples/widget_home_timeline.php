@@ -4,7 +4,8 @@
  * retweets posted by the authenticating user and the users they follow
  * using WP_Twitter_Client. This demo will add sub menu page to the Settings menu
  * where it renders a button to authorize the app. Once authorized,
- * you should be able to see the twitter screen_name.
+ * you should be able to see the twitter screen_name and the widget will
+ * be able to fetch the tweets.
  *
  * Copyright (C) 2013  Akeda Bagus <admin@gedex.web.id>
  *
