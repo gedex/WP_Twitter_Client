@@ -21,8 +21,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// Adjust the PATH to where `WP_Twitter_Client.php` resides
-require_once( STYLESHEETPATH . '/WP_Twitter_Client/WP_Twitter_Client.php' );
+// Adjust the PATH to where `class-wp-twitter-client.php` resides
+require_once( STYLESHEETPATH . '/WP_Twitter_Client/class-wp-twitter-client.php' );
 
 // Go to https://dev.twitter.com/apps, create an app and paste
 // update the consumer_key and consumer_secret below
