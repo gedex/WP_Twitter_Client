@@ -24,6 +24,11 @@
 // Adjust the PATH to where `class-wp-twitter-client.php` resides
 require_once( STYLESHEETPATH . '/WP_Twitter_Client/class-wp-twitter-client.php' );
 
+// If you get timeout error try increasing the timeout below.
+add_filter( 'http_request_timeout', function() {
+	return 15;
+} );
+
 // Go to https://dev.twitter.com/apps, create an app and paste
 // update the consumer_key and consumer_secret below
 define( 'CONSUMER_KEY',    'DL9ziNzAbLmShjW8sSYxw' );
@@ -125,15 +130,24 @@ class Example_Auth_WP_Twitter_Client {
 			if ( wp_remote_retrieve_response_code( $resp ) == 200 ) {
 				wp_parse_str( wp_remote_retrieve_body( $resp ), $tokens );
 				update_option( self::TOKENS_OPTION, $tokens );
-			} else {
-				$error_message = sprintf(
-					'<strong>%s</strong> %s',
-					sprintf( __( 'Status code %s: ', 'theme-domain' ), wp_remote_retrieve_response_code( $resp ) ),
-					wp_remote_retrieve_body( $resp )
-				);
-				delete_option( self::TOKENS_OPTION );
-				update_option( self::ERROR_OPTION, $error_message );
-				$url_to_redirect = add_query_arg( 'got_error', true, $url_to_redirect );
+			} else if ( ! isset( $_REQUEST['got_error'] ) ) { // Too avoid endless redirection
+				if ( is_wp_error($resp) || ! isset($resp['response']) ) {
+					// We got error during request
+					$error_message = 'WP HTTP Error: ' . $resp->get_error_message();;
+					delete_option( self::TOKENS_OPTION );
+					update_option( self::ERROR_OPTION, $error_message );
+					$url_to_redirect = add_query_arg( 'got_error', true, $url_to_redirect );
+				} else {
+					// Unexpected response
+					$error_message = sprintf(
+						'<strong>%s</strong> %s',
+						sprintf( __( 'Status code %s: ', 'theme-domain' ), wp_remote_retrieve_response_code( $resp ) ),
+						wp_remote_retrieve_body( $resp )
+					);
+					delete_option( self::TOKENS_OPTION );
+					update_option( self::ERROR_OPTION, $error_message );
+					$url_to_redirect = add_query_arg( 'got_error', true, $url_to_redirect );
+				}
 			}
 			wp_redirect( $url_to_redirect );
 			exit();
@@ -183,6 +197,22 @@ class Example_Auth_WP_Twitter_Client {
 		if ( wp_remote_retrieve_response_code( $resp ) == 200 ) {
 			wp_parse_str( wp_remote_retrieve_body( $resp ), $body );
 			$this->request_token = $body['oauth_token'];
+		} else if ( ! isset( $_REQUEST['got_error'] ) ) { // Too avoid endless redirection
+			if ( is_wp_error($resp) || ! isset($resp['response']) ) {
+				// We got error during request
+				$error_message = 'WP HTTP Error: ' . $resp->get_error_message();;
+				delete_option( self::TOKENS_OPTION );
+				update_option( self::ERROR_OPTION, $error_message );
+				$url_to_redirect = add_query_arg( 'got_error', true, $url_to_redirect );
+			} else {
+				// Unexpected response
+				$error_message = __( 'Failed to retrieve request token', 'theme-domain' );
+				delete_option( self::TOKENS_OPTION );
+				update_option( self::ERROR_OPTION, $error_message );
+				$url_to_redirect = add_query_arg( 'got_error', true, $url_to_redirect );
+			}
+			wp_redirect( $url_to_redirect );
+			exit();
 		}
 
 		// Check if there's an error to be shown
